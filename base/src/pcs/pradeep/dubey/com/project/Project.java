@@ -5,20 +5,23 @@
 // Generated on: 2017.08.14 at 04:03:17 PM IST 
 //
 
-
 package pcs.pradeep.dubey.com.project;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
 import pcs.pradeep.dubey.com.baseentity.AddressDetails;
 
-
 /**
- * <p>Java class for Project complex type.
+ * <p>
+ * Java class for Project complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Project">
@@ -38,14 +41,9 @@ import pcs.pradeep.dubey.com.baseentity.AddressDetails;
  * 
  * 
  */
+@XmlRootElement(name = "Project")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Project", propOrder = {
-    "id",
-    "description",
-    "workflowList",
-    "addressOfProject",
-    "status"
-})
+@XmlType(name = "Project", propOrder = { "id", "description", "workflowList", "addressOfProject", "status" })
 public class Project {
 
     @XmlElement(required = true)
@@ -62,121 +60,106 @@ public class Project {
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getId() {
-        return id;
+	return id;
     }
 
     /**
      * Sets the value of the id property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setId(String value) {
-        this.id = value;
+	this.id = value;
     }
 
     /**
      * Gets the value of the description property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getDescription() {
-        return description;
+	return description;
     }
 
     /**
      * Sets the value of the description property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setDescription(String value) {
-        this.description = value;
+	this.description = value;
     }
 
     /**
      * Gets the value of the workflowList property.
      * 
-     * @return
-     *     possible object is
-     *     {@link WorkFlowList }
-     *     
+     * @return possible object is {@link WorkFlowList }
+     * 
      */
     public WorkFlowList getWorkflowList() {
-        return workflowList;
+	return workflowList;
     }
 
     /**
      * Sets the value of the workflowList property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link WorkFlowList }
-     *     
+     *            allowed object is {@link WorkFlowList }
+     * 
      */
     public void setWorkflowList(WorkFlowList value) {
-        this.workflowList = value;
+	this.workflowList = value;
     }
 
     /**
      * Gets the value of the addressOfProject property.
      * 
-     * @return
-     *     possible object is
-     *     {@link AddressDetails }
-     *     
+     * @return possible object is {@link AddressDetails }
+     * 
      */
     public AddressDetails getAddressOfProject() {
-        return addressOfProject;
+	return addressOfProject;
     }
 
     /**
      * Sets the value of the addressOfProject property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link AddressDetails }
-     *     
+     *            allowed object is {@link AddressDetails }
+     * 
      */
     public void setAddressOfProject(AddressDetails value) {
-        this.addressOfProject = value;
+	this.addressOfProject = value;
     }
 
     /**
      * Gets the value of the status property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ProjectStatus }
-     *     
+     * @return possible object is {@link ProjectStatus }
+     * 
      */
     public ProjectStatus getStatus() {
-        return status;
+	return status;
     }
 
     /**
      * Sets the value of the status property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ProjectStatus }
-     *     
+     *            allowed object is {@link ProjectStatus }
+     * 
      */
     public void setStatus(ProjectStatus value) {
-        this.status = value;
+	this.status = value;
     }
 
 }

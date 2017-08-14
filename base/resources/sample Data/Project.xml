@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Project xmlns:tns="http:/com.dubey.pradeep.pcs/Project" xmlns:tns1="http:/com.dubey.pradeep.pcs/baseEntity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/com.dubey.pradeep.pcs/Project ../../umls/Project.xsd ">
+  <tns:id>tns:id</tns:id>
+  <tns:description>tns:description</tns:description>
+  <tns:workflowList>
+    <tns:flowList>
+      <id>id</id>
+      <description>description</description>
+    </tns:flowList>
+  </tns:workflowList>
+  <tns:addressOfProject>
+    <primaryAddress>primaryAddress</primaryAddress>
+    <city>city</city>
+    <state>state</state>
+    <pinCode>pinCode</pinCode>
+    <country>country</country>
+  </tns:addressOfProject>
+  <tns:status>In Progress</tns:status>
+</tns:Project>

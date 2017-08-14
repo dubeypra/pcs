@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Q2:Customer xmlns:Q2="http:/com.dubey.pradeep.pcs/customer" xmlns:tns="http:/com.dubey.pradeep.pcs/baseEntity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/com.dubey.pradeep.pcs/customer ../../umls/Customer.xsd ">
+  <customerId>customerId</customerId>
+  <personalDetails>
+    <firstName>firstName</firstName>
+    <middleName>middleName</middleName>
+    <lastName>lastName</lastName>
+    <dob>2001-01-01</dob>
+  </personalDetails>
+  <communicationDetails>
+    <mobileNo>mobileNo</mobileNo>
+    <landlineNo>landlineNo</landlineNo>
+    <emailId>emailId</emailId>
+  </communicationDetails>
+  <addressDetails>
+    <primaryAddress>primaryAddress</primaryAddress>
+    <city>city</city>
+    <state>state</state>
+    <pinCode>pinCode</pinCode>
+    <country>country</country>
+  </addressDetails>
+  <creationDate>2001-01-01</creationDate>
+</Q2:Customer>

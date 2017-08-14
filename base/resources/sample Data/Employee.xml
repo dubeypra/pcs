@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Employee xmlns:tns="http:/com.dubey.pradeep.pcs/Employee" xmlns:tns1="http:/com.dubey.pradeep.pcs/baseEntity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/com.dubey.pradeep.pcs/Employee ../../umls/Employee.xsd ">
+  <empId>empId</empId>
+  <dateOfJoining>2001-01-01</dateOfJoining>
+  <designation>Admin</designation>
+  <addressDetails>
+    <primaryAddress>primaryAddress</primaryAddress>
+    <city>city</city>
+    <state>state</state>
+    <pinCode>pinCode</pinCode>
+    <country>country</country>
+  </addressDetails>
+  <communicationDetails>
+    <mobileNo>mobileNo</mobileNo>
+    <landlineNo>landlineNo</landlineNo>
+    <emailId>emailId</emailId>
+  </communicationDetails>
+  <personalDetails>
+    <firstName>firstName</firstName>
+    <middleName>middleName</middleName>
+    <lastName>lastName</lastName>
+    <dob>2001-01-01</dob>
+  </personalDetails>
+</tns:Employee>

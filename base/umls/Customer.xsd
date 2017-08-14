@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http:/com.dubey.pradeep.pcs/customer"
-	xmlns:tns="http://www.pcs.org/Customer" xmlns:Q1="http:/com.dubey.pradeep.pcs/baseEntity">
+	xmlns:tns="http://www.pcs.org/Customer" xmlns:Q1="http:/com.dubey.pradeep.pcs/baseEntity" xmlns:Q2="http:/com.dubey.pradeep.pcs/customer">
 	<import schemaLocation="baseEntity.xsd" namespace="http:/com.dubey.pradeep.pcs/baseEntity"></import>
 
 
 
-	<complexType name="Employee">
+	<complexType name="Customer">
 		<sequence>
 			<element name="customerId" type="string"></element>
 
@@ -20,4 +20,6 @@
     <element name="creationDate" type="date"></element>
 		</sequence>
 	</complexType>
+
+	<element name="Customer" type="Q2:Customer"></element>
 </schema>

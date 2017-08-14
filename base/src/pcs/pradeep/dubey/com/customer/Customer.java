@@ -5,24 +5,27 @@
 // Generated on: 2017.08.14 at 04:03:17 PM IST 
 //
 
-
 package pcs.pradeep.dubey.com.customer;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+
 import pcs.pradeep.dubey.com.baseentity.AddressDetails;
 import pcs.pradeep.dubey.com.baseentity.CommunicationDetails;
 import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
 
-
 /**
- * <p>Java class for Employee complex type.
+ * <p>
+ * Java class for Employee complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Employee">
@@ -42,15 +45,11 @@ import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
  * 
  * 
  */
+@XmlRootElement(name = "Customer")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Employee", propOrder = {
-    "customerId",
-    "personalDetails",
-    "communicationDetails",
-    "addressDetails",
-    "creationDate"
-})
-public class Employee {
+@XmlType(name = "Customer", propOrder = { "customerId", "personalDetails", "communicationDetails", "addressDetails",
+	"creationDate" })
+public class Customer {
 
     @XmlElement(required = true)
     protected String customerId;
@@ -67,121 +66,106 @@ public class Employee {
     /**
      * Gets the value of the customerId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getCustomerId() {
-        return customerId;
+	return customerId;
     }
 
     /**
      * Sets the value of the customerId property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setCustomerId(String value) {
-        this.customerId = value;
+	this.customerId = value;
     }
 
     /**
      * Gets the value of the personalDetails property.
      * 
-     * @return
-     *     possible object is
-     *     {@link PersonalDetails }
-     *     
+     * @return possible object is {@link PersonalDetails }
+     * 
      */
     public PersonalDetails getPersonalDetails() {
-        return personalDetails;
+	return personalDetails;
     }
 
     /**
      * Sets the value of the personalDetails property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link PersonalDetails }
-     *     
+     *            allowed object is {@link PersonalDetails }
+     * 
      */
     public void setPersonalDetails(PersonalDetails value) {
-        this.personalDetails = value;
+	this.personalDetails = value;
     }
 
     /**
      * Gets the value of the communicationDetails property.
      * 
-     * @return
-     *     possible object is
-     *     {@link CommunicationDetails }
-     *     
+     * @return possible object is {@link CommunicationDetails }
+     * 
      */
     public CommunicationDetails getCommunicationDetails() {
-        return communicationDetails;
+	return communicationDetails;
     }
 
     /**
      * Sets the value of the communicationDetails property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link CommunicationDetails }
-     *     
+     *            allowed object is {@link CommunicationDetails }
+     * 
      */
     public void setCommunicationDetails(CommunicationDetails value) {
-        this.communicationDetails = value;
+	this.communicationDetails = value;
     }
 
     /**
      * Gets the value of the addressDetails property.
      * 
-     * @return
-     *     possible object is
-     *     {@link AddressDetails }
-     *     
+     * @return possible object is {@link AddressDetails }
+     * 
      */
     public AddressDetails getAddressDetails() {
-        return addressDetails;
+	return addressDetails;
     }
 
     /**
      * Sets the value of the addressDetails property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link AddressDetails }
-     *     
+     *            allowed object is {@link AddressDetails }
+     * 
      */
     public void setAddressDetails(AddressDetails value) {
-        this.addressDetails = value;
+	this.addressDetails = value;
     }
 
     /**
      * Gets the value of the creationDate property.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
      */
     public XMLGregorianCalendar getCreationDate() {
-        return creationDate;
+	return creationDate;
     }
 
     /**
      * Sets the value of the creationDate property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *            allowed object is {@link XMLGregorianCalendar }
+     * 
      */
     public void setCreationDate(XMLGregorianCalendar value) {
-        this.creationDate = value;
+	this.creationDate = value;
     }
 
 }

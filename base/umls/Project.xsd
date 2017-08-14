@@ -26,4 +26,6 @@
 				minOccurs="1"></element>
 		</sequence>
 	</complexType>
+
+    <element name="Project" type="tns:Project"></element>
 </schema>
