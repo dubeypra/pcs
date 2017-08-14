@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http:/com.dubey.pradeep.pcs/customer"
+	xmlns:tns="http://www.pcs.org/Customer" xmlns:Q1="http:/com.dubey.pradeep.pcs/baseEntity">
+	<import schemaLocation="baseEntity.xsd" namespace="http:/com.dubey.pradeep.pcs/baseEntity"></import>
+
+
+
+	<complexType name="Employee">
+		<sequence>
+			<element name="customerId" type="string"></element>
+
+    <element name="personalDetails" type="Q1:PersonalDetails"></element>
+
+    <element name="communicationDetails"
+    	type="Q1:CommunicationDetails">
+    </element>
+
+			<element name="addressDetails" type="Q1:AddressDetails"></element>
+
+    <element name="creationDate" type="date"></element>
+		</sequence>
+	</complexType>
+</schema>

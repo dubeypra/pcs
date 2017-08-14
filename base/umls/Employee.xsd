@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http:/com.dubey.pradeep.pcs/Employee"
+	xmlns:tns="http:/com.dubey.pradeep.pcs/Employee" xmlns:Q1="http:/com.dubey.pradeep.pcs/baseEntity">
+	<import schemaLocation="baseEntity.xsd" namespace="http:/com.dubey.pradeep.pcs/baseEntity"></import>
+	<complexType name="Employee">
+		<sequence>
+			<element name="empId" type="string"></element>
+			<element name="dateOfJoining" type="date"></element>
+			<element name="designation" type="tns:Designation"></element>
+			<element name="addressDetails" type="Q1:AddressDetails"></element>
+			<element name="communicationDetails" type="Q1:CommunicationDetails">
+			</element>
+			<element name="personalDetails" type="Q1:PersonalDetails"></element>
+		</sequence>
+	</complexType>
+<simpleType name="Designation">
+				<restriction base="string">
+					<enumeration value="Admin" />
+					<enumeration value="Approver" />
+					<enumeration value="Designer" />
+					<enumeration value="Field Engineer" />
+				</restriction>
+			</simpleType>
+
+    <element name="Employee" type="tns:Employee"></element>
+</schema>

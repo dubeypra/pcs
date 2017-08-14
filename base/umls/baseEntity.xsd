@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http:/com.dubey.pradeep.pcs/baseEntity" 
+	xmlns:tns="http:/com.dubey.pradeep.pcs/baseEntity" >
+
+	<complexType name="AddressDetails">
+		<sequence>
+			<sequence>
+				<element name="primaryAddress" type="string"></element>
+			</sequence>
+			<element name="city" type="string"></element>
+			<element name="state" type="string"></element>
+			<element name="pinCode" type="string"></element>
+			<element name="country" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="CommunicationDetails">
+		<sequence>
+			<element name="mobileNo" type="string"></element>
+			<element name="landlineNo" type="string"></element>
+			<element name="emailId" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PersonalDetails">
+		<sequence>
+			<element name="firstName" type="string"></element>
+			<element name="middleName" type="string"></element>
+			<element name="lastName" type="string"></element>
+			<element name="dob" type="date"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="Task">
+		<sequence>
+			<element name="taskId" type="string"></element>
+			<element name="parentTaskId" type="string"></element>
+			<element name="orderOfExecution" type="int"></element>
+			<element name="taskComment" type="tns:TaskComment"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="artifacts" type="tns:TaskArtifacts"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="assignmentDetails"
+				type="tns:TaskAssignementDetails">
+			</element>
+			<element name="subTaskList" type="tns:Task"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="taskStatus" type="tns:TaskStatus"></element>
+			<element name="notes" type="tns:TaskComment"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TaskComment">
+		<sequence>
+			<element name="comment" type="string"></element>
+			<element name="date" type="dateTime"></element>
+			<element name="contributorId" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TaskArtifacts">
+		<sequence>
+			<element name="decription" type="string"></element>
+			<element name="path" type="string"></element>
+			<element name="dateOfUpload" type="dateTime"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="TaskAssignementDetails">
+		<sequence>
+			<element name="assginedId" type="string"></element>
+			<element name="assignedBy" type="string"></element>
+			<element name="assignedDate" type="dateTime"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="WorkFlow">
+		<sequence>
+			<element name="id" type="string"></element>
+			<element name="description" type="string"></element>
+			<element name="taskList" type="tns:Task" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="TaskStatus">
+		<restriction base="string">
+			<enumeration value="Created"></enumeration>
+			<enumeration value="Planned"></enumeration>
+			<enumeration value="On Hold"></enumeration>
+			<enumeration value="Completed"></enumeration>
+			<enumeration value="In Progress"></enumeration>
+		</restriction>
+	</simpleType>
+</schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http:/com.dubey.pradeep.pcs/Project"
+	xmlns:tns="http:/com.dubey.pradeep.pcs/Project" elementFormDefault="qualified"
+	xmlns:Q1="http:/com.dubey.pradeep.pcs/baseEntity">
+	<import schemaLocation="baseEntity.xsd" namespace="http:/com.dubey.pradeep.pcs/baseEntity"></import>
+	<complexType name="Project">
+		<sequence>
+			<element name="id" type="string"></element>
+			<element name="description" type="string"></element>
+			<element name="workflowList" type="tns:WorkFlowList"></element>
+			<element name="addressOfProject" type="Q1:AddressDetails"></element>
+			<element name="status" type="tns:ProjectStatus"></element>
+		</sequence>
+	</complexType>
+	<simpleType name="ProjectStatus">
+		<restriction base="string">
+			<enumeration value="In Progress"></enumeration>
+			<enumeration value="Planned"></enumeration>
+			<enumeration value="Completed"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="WorkFlowList">
+		<sequence>
+			<element name="flowList" type="Q1:WorkFlow" maxOccurs="unbounded"
+				minOccurs="1"></element>
+		</sequence>
+	</complexType>
+</schema>
