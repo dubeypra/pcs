@@ -7,6 +7,8 @@
 
 package pcs.pradeep.dubey.com.employee;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -50,8 +52,11 @@ import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Employee", propOrder = { "empId", "dateOfJoining", "designation", "addressDetails",
 	"communicationDetails", "personalDetails" })
-public class Employee {
-
+public class Employee implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String empId;
     @XmlElement(required = true)
