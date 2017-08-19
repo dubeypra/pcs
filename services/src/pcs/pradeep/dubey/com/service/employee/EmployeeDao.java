@@ -22,6 +22,7 @@ import pcs.pradeep.dubey.com.baseentity.CommunicationDetails;
 import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
 import pcs.pradeep.dubey.com.employee.Designation;
 import pcs.pradeep.dubey.com.employee.Employee;
+import pcs.pradeep.dubey.com.employee.EmployeeList;
 import pcs.pradeep.dubey.com.service.utils.ApplicationConstants;
 import pcs.pradeep.dubey.com.service.utils.DataFileFolderLocations;
 import pcs.pradeep.dubey.com.service.utils.Utility;
@@ -41,6 +42,11 @@ public class EmployeeDao {
 	 * This map will populate when all the employess are loaded
 	 */
 	private HashMap<String, Employee> employeeMap;
+
+	public static String UPDATE_EMPLOYEE_ID = "999999";
+	public static String CREATE_EMPLOYEE_ID = "888888";
+	public static String INTERMEDIATE_TEMP_FILE_IDENTIFIER = "TEMP_FILE";
+	public static String INTERMEDIATE_EMPLOYEE_IDENTIFIER = "EMPLOYEE";
 
 	/**
 	 * This counter is used to track the employee Id of last used
@@ -88,11 +94,11 @@ public class EmployeeDao {
 	 * @return
 	 * @throws JAXBException
 	 */
-	public List<Employee> getAllEmployee() throws JAXBException {
-	    List<Employee> employeeList = new ArrayList<Employee>();
+	public EmployeeList getAllEmployee() throws JAXBException {
+	    EmployeeList employeeList = new EmployeeList();
 	    Collection<Employee> emplist = employeeMap.values();
 	    for (Employee employee : emplist) {
-		employeeList.add(employee);
+		employeeList.getEmployeeList().add(employee);
 	    }
 	    return employeeList;
 	}
@@ -129,19 +135,27 @@ public class EmployeeDao {
 	 *            Employee
 	 * @return EmployeeID Created by System
 	 */
-	public String createEmployee(Employee employee) {
+	public String createEmployee(String employeeData) {
 	    if (lastUsedEmployeeId == 0) {
 		lastUsedEmployeeId = ApplicationConstants.EMPLOYEE_ID_OFFSET;
 	    }
 	    String employeeId = String.valueOf(++lastUsedEmployeeId);
-	    employee.setEmpId(employeeId);
+	    Employee employee = null;
+
 	    try {
-		String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employee.getEmpId()
+		HashMap intermediateProcessMap = handleEmployeeStream(employeeData, CREATE_EMPLOYEE_ID);
+		employee = (Employee) intermediateProcessMap.get(INTERMEDIATE_EMPLOYEE_IDENTIFIER);
+		File tempFile = (File) intermediateProcessMap.get(INTERMEDIATE_TEMP_FILE_IDENTIFIER);
+		employee.setEmpId(employeeId);
+
+		String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employeeId
 			+ DataFileFolderLocations.FILE_EXTENSION;
+
 		JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		jaxbMarshaller.marshal(employee, new FileOutputStream(fileLocation));
+		tempFile.delete();
 
 	    } catch (FileNotFoundException e) {
 		e.printStackTrace();
@@ -150,7 +164,9 @@ public class EmployeeDao {
 	    } catch (JAXBException e) {
 		e.printStackTrace();
 	    }
-	    employeeMap.put(employeeId, employee);
+	    if (employee != null)
+		employeeMap.put(employeeId, employee);
+
 	    return employeeId;
 
 	}
@@ -162,15 +178,23 @@ public class EmployeeDao {
 	 *            {@link Employee}
 	 * @return True for Success
 	 */
-	public boolean updateEmployee(Employee employee) {
+	public boolean updateEmployee(String employeeData) {
 	    boolean isTransactionSuccess = true;
+	    Employee employee = null;
 	    try {
+
+		HashMap intermediateProcessMap = handleEmployeeStream(employeeData, UPDATE_EMPLOYEE_ID);
+		employee = (Employee) intermediateProcessMap.get(INTERMEDIATE_EMPLOYEE_IDENTIFIER);
+		File tempFile = (File) intermediateProcessMap.get(INTERMEDIATE_TEMP_FILE_IDENTIFIER);
+
 		String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employee.getEmpId()
 			+ DataFileFolderLocations.FILE_EXTENSION;
-		JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
-		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		jaxbMarshaller.marshal(employee, new FileOutputStream(fileLocation));
+
+		File existingFile = new File(fileLocation);
+		isTransactionSuccess = existingFile.delete();
+
+		if (isTransactionSuccess)
+		    isTransactionSuccess = tempFile.renameTo(new File(fileLocation));
 
 	    } catch (FileNotFoundException e) {
 		isTransactionSuccess = false;
@@ -182,31 +206,68 @@ public class EmployeeDao {
 		isTransactionSuccess = false;
 		e.printStackTrace();
 	    }
-	    employeeMap.put(employee.getEmpId(), employee);
+	    if (employee != null)
+		employeeMap.put(employee.getEmpId(), employee);
 
 	    return isTransactionSuccess;
 	}
-    }
 
-    /**
-     * Devloped for Testing purpose only
-     * 
-     * @param args
-     */
-    public static void main(String args[]) {
-	for (int i = 0; i < 3; i++) {
-	    Service.INSTANCE.createEmployee(createDummyEmployeeData());
+	/**
+	 * Delete the data of the particular employee from the system
+	 * 
+	 * @param empId
+	 * @return
+	 */
+	public boolean deleteEmployee(String empId) {
+	    String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + empId
+		    + DataFileFolderLocations.FILE_EXTENSION;
+	    File file = new File(fileLocation);
+	    return file.delete();
 	}
 
-	/*
-	 * try {
-	 * 
-	 * List<Employee> employeeList = dao.getAllEmployees();
-	 * System.out.println("Test Ok"); } catch (JAXBException e) {
-	 * e.printStackTrace(); }
+	/**
+	 * @param employeeData
+	 * @return
+	 * @throws IOException
+	 * @throws JAXBException
 	 */
+	private HashMap handleEmployeeStream(String employeeData, String employeeId) throws IOException, JAXBException {
+	    HashMap intermediateMap = new HashMap<>();
+	    Employee employee;
+	    String tempFileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employeeId
+		    + DataFileFolderLocations.FILE_EXTENSION;
+	    Utility.stringToDom(employeeData, tempFileLocation);
 
+	    JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
+	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	    File tempFile = new File(tempFileLocation);
+	    employee = (Employee) (jaxbUnmarshaller.unmarshal(tempFile));
+
+	    intermediateMap.put(INTERMEDIATE_TEMP_FILE_IDENTIFIER, tempFile);
+	    intermediateMap.put(INTERMEDIATE_EMPLOYEE_IDENTIFIER, employee);
+	    return intermediateMap;
+	}
     }
+
+    /*    *//**
+	     * Devloped for Testing purpose only
+	     * 
+	     * @param args
+	     *//*
+	       * public static void main(String args[]) { for (int i = 0; i < 3;
+	       * i++) {
+	       * Service.INSTANCE.createEmployee(createDummyEmployeeData()); }
+	       * 
+	       * 
+	       * try {
+	       * 
+	       * List<Employee> employeeList = dao.getAllEmployees();
+	       * System.out.println("Test Ok"); } catch (JAXBException e) {
+	       * e.printStackTrace(); }
+	       * 
+	       * 
+	       * }
+	       */
 
     /**
      * @return dummy test Data

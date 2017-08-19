@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employees>
+	<ns2:Employee xmlns:ns2="http:/com.dubey.pradeep.pcs/Employee">
+		<empId>1006</empId>
+		<designation>Admin</designation>
+		<addressDetails>
+			<primaryAddress>HN 2388</primaryAddress>
+			<city>Delhi</city>
+			<state>Delhi</state>
+			<pinCode>11001</pinCode>
+			<country>India</country>
+		</addressDetails>
+		<communicationDetails>
+			<mobileNo>3523464</mobileNo>
+			<landlineNo>123445</landlineNo>
+			<emailId>xyz@gmil.com</emailId>
+		</communicationDetails>
+		<personalDetails>
+			<firstName>Pradeep</firstName>
+			<middleName></middleName>
+			<lastName>Dubey</lastName>
+		</personalDetails>
+	</ns2:Employee>
+	<ns2:Employee xmlns:ns2="http:/com.dubey.pradeep.pcs/Employee">
+		<empId>1005</empId>
+		<designation>Admin</designation>
+		<addressDetails>
+			<primaryAddress>HN 2388</primaryAddress>
+			<city>Delhi</city>
+			<state>Delhi</state>
+			<pinCode>11001</pinCode>
+			<country>India</country>
+		</addressDetails>
+		<communicationDetails>
+			<mobileNo>3523464</mobileNo>
+			<landlineNo>123445</landlineNo>
+			<emailId>xyz@gmil.com</emailId>
+		</communicationDetails>
+		<personalDetails>
+			<firstName>Pradeep</firstName>
+			<middleName></middleName>
+			<lastName>Dubey</lastName>
+		</personalDetails>
+	</ns2:Employee>
+	<ns2:Employee xmlns:ns2="http:/com.dubey.pradeep.pcs/Employee">
+		<empId>1004</empId>
+		<designation>Admin</designation>
+		<addressDetails>
+			<primaryAddress>HN 2388</primaryAddress>
+			<city>Delhi</city>
+			<state>Delhi</state>
+			<pinCode>11001</pinCode>
+			<country>India</country>
+		</addressDetails>
+		<communicationDetails>
+			<mobileNo>3523464</mobileNo>
+			<landlineNo>123445</landlineNo>
+			<emailId>xyz@gmil.com</emailId>
+		</communicationDetails>
+		<personalDetails>
+			<firstName>Pradeep</firstName>
+			<middleName></middleName>
+			<lastName>Dubey</lastName>
+		</personalDetails>
+	</ns2:Employee>
+	<ns2:Employee xmlns:ns2="http:/com.dubey.pradeep.pcs/Employee">
+		<empId>1003</empId>
+		<designation>Admin</designation>
+		<addressDetails>
+			<primaryAddress>HN 2388</primaryAddress>
+			<city>Delhi</city>
+			<state>Delhi</state>
+			<pinCode>11001</pinCode>
+			<country>India</country>
+		</addressDetails>
+		<communicationDetails>
+			<mobileNo>3523464</mobileNo>
+			<landlineNo>123445</landlineNo>
+			<emailId>xyz@gmil.com</emailId>
+		</communicationDetails>
+		<personalDetails>
+			<firstName>Pradeep</firstName>
+			<middleName></middleName>
+			<lastName>Dubey</lastName>
+		</personalDetails>
+	</ns2:Employee>
+	<ns2:Employee xmlns:ns2="http:/com.dubey.pradeep.pcs/Employee">
+		<empId>1002</empId>
+		<designation>Admin</designation>
+		<addressDetails>
+			<primaryAddress>HN 2388</primaryAddress>
+			<city>Delhi</city>
+			<state>Delhi</state>
+			<pinCode>11001</pinCode>
+			<country>India</country>
+		</addressDetails>
+		<communicationDetails>
+			<mobileNo>3523464</mobileNo>
+			<landlineNo>123445</landlineNo>
+			<emailId>xyz@gmil.com</emailId>
+		</communicationDetails>
+		<personalDetails>
+			<firstName>Pradeep</firstName>
+			<middleName></middleName>
+			<lastName>Dubey</lastName>
+		</personalDetails>
+	</ns2:Employee>
+	<ns2:Employee xmlns:ns2="http:/com.dubey.pradeep.pcs/Employee">
+		<empId>1001</empId>
+		<designation>Admin</designation>
+		<addressDetails>
+			<primaryAddress>HN 2388</primaryAddress>
+			<city>Delhi</city>
+			<state>Delhi</state>
+			<pinCode>11001</pinCode>
+			<country>India</country>
+		</addressDetails>
+		<communicationDetails>
+			<mobileNo>3523464</mobileNo>
+			<landlineNo>123445</landlineNo>
+			<emailId>xyz@gmil.com</emailId>
+		</communicationDetails>
+		<personalDetails>
+			<firstName>Pradeep</firstName>
+			<middleName></middleName>
+			<lastName>Dubey</lastName>
+		</personalDetails>
+	</ns2:Employee>
+</employees>

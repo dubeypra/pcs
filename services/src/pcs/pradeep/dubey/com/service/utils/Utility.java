@@ -4,6 +4,7 @@
 package pcs.pradeep.dubey.com.service.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,4 +29,9 @@ public class Utility {
 	return fileList;
     }
 
+    public static void stringToDom(String xmlSource, String filePath) throws IOException {
+	java.io.FileWriter fw = new java.io.FileWriter(filePath);
+	fw.write(xmlSource);
+	fw.close();
+    }
 }

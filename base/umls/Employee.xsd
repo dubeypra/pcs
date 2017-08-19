@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http:/com.dubey.pradeep.pcs/Employee"
 	xmlns:tns="http:/com.dubey.pradeep.pcs/Employee" xmlns:Q1="http:/com.dubey.pradeep.pcs/baseEntity">
+	
 	<import schemaLocation="baseEntity.xsd" namespace="http:/com.dubey.pradeep.pcs/baseEntity"></import>
 	<complexType name="Employee">
 		<sequence>
@@ -23,4 +24,10 @@
 			</simpleType>
 
     <element name="Employee" type="tns:Employee"></element>
+
+    <complexType name="EmployeeList">
+    	<sequence>
+    		<element name="employeeList" type="tns:Employee" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
 </schema>
