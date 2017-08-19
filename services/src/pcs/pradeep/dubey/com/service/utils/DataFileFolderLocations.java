@@ -14,5 +14,8 @@ package pcs.pradeep.dubey.com.service.utils;
  */
 public interface DataFileFolderLocations {
     static final String FILE_EXTENSION = ".xml";
+
     static final String EMPLOYEE_RELATIVE_PATH = "C:\\Users\\prdubey\\Desktop\\pcs\\temp\\data\\employee\\";
+
+    static final String CUSTOMER_RELATIVE_PATH = "C:\\Users\\prdubey\\Desktop\\pcs\\temp\\data\\customer\\";
 }

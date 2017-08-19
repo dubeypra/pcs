@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBException;
 
 import pcs.pradeep.dubey.com.employee.Employee;
-import pcs.pradeep.dubey.com.employee.EmployeeList;
+import pcs.pradeep.dubey.com.employee.EmployeeList;;
 
 /**
  * @author prdubey
@@ -41,9 +41,9 @@ public class EmployeeDataService {
     }
 
     @GET
-    @Path("/employees/{userId}")
+    @Path("/employees/{empId}")
     @Produces(MediaType.APPLICATION_XML)
-    public Employee getEmployee(@PathParam("userId") String employeeId) {
+    public Employee getEmployee(@PathParam("empId") String employeeId) {
 	try {
 	    return EmployeeDao.Service.INSTANCE.getEmployee(employeeId);
 	} catch (JAXBException e) {

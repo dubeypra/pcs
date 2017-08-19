@@ -43,7 +43,7 @@
 
 	<target name="generate">
 		<xjc destdir="src">
-			<schema dir="umls" includes="**/E*.xsd" />
+			<schema dir="umls" includes="**/C*.xsd" />
 		<!--	<arg value="-nv" /> -->
 		</xjc>
 	</target>

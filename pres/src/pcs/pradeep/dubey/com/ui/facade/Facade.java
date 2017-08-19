@@ -34,7 +34,7 @@ public abstract class Facade {
      * @throws ProtocolException
      * @throws RuntimeException
      */
-    public HttpURLConnection connectEmployeeDataService(String urlPath, String requestMethod)
+    public HttpURLConnection connectDataService(String urlPath, String requestMethod)
 	    throws MalformedURLException, IOException, ProtocolException, RuntimeException {
 	URL url = new URL(urlPath);
 	HttpURLConnection conn = (HttpURLConnection) url.openConnection();

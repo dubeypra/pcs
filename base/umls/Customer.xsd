@@ -22,4 +22,10 @@
 	</complexType>
 
 	<element name="Customer" type="Q2:Customer"></element>
+
+	<complexType name="CustomerList">
+		<sequence>
+			<element name="customerList" type="Q2:Customer" maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+	</complexType>
 </schema>

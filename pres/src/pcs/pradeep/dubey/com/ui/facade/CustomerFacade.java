@@ -15,46 +15,49 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import pcs.pradeep.dubey.com.employee.Employee;
-import pcs.pradeep.dubey.com.employee.EmployeeList;
+import pcs.pradeep.dubey.com.baseentity.AddressDetails;
+import pcs.pradeep.dubey.com.baseentity.CommunicationDetails;
+import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
+import pcs.pradeep.dubey.com.customer.Customer;
+import pcs.pradeep.dubey.com.customer.CustomerList;
 
 /**
- * This class will do all the communication for the Employee related information
+ * This class will do all the communication for the Customer related information
  * for UI Facade has one to one mapping with the Web Service
  * 
  * @author prdubey
  *
  */
-public class EmployeeFacade extends Facade {
+public class CustomerFacade extends Facade {
 
-    public static String BASE_URL = "http://localhost:8080/services/rest/EmployeeDataService/";
+    public static String BASE_URL = "http://localhost:8080/services/rest/CustomerDataService/";
 
-    public static String GET_ALL_EMPLOYEE = "employees";
-    public static String UPDATE_EMPLOYEE = "employees/update";
-    public static String CREATE_EMPLOYEE = "employees/create";
-    public static String DELETE_EMPLOYEE = "employees";
+    public static String GET_ALL_CUSTOMER = "customers";
+    public static String UPDATE_CUSTOMER = "customers/update";
+    public static String CREATE_CUSTOMER = "customers/create";
+    public static String DELETE_CUSTOMER = "customers";
 
     public static String OPERATION_GET = "GET";
     public static String OPERATION_POST = "POST";
     public static String OPERATION_DELETE = "DELETE";
 
     /**
-     * @return List of all the Employees
+     * @return List of all the Customers
      */
-    public List<Employee> retrieveEmployees() {
-	List<Employee> employeeList = new ArrayList<Employee>();
+    public List<Customer> retrieveCustomers() {
+	List<Customer> customerList = new ArrayList<Customer>();
 	try {
-	    HttpURLConnection conn = connectDataService(BASE_URL + GET_ALL_EMPLOYEE, OPERATION_GET);
+	    HttpURLConnection conn = connectDataService(BASE_URL + GET_ALL_CUSTOMER, OPERATION_GET);
 
-	    JAXBContext jaxbContext = JAXBContext.newInstance(EmployeeList.class);
+	    JAXBContext jaxbContext = JAXBContext.newInstance(CustomerList.class);
 	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-	    EmployeeList employeeList1 = (EmployeeList) (jaxbUnmarshaller.unmarshal(conn.getInputStream()));
+	    CustomerList customerList1 = (CustomerList) (jaxbUnmarshaller.unmarshal(conn.getInputStream()));
 
 	    isServiceCallSuccessful(conn);
 
-	    employeeList = employeeList1.getEmployeeList();
-	    System.out.println(employeeList.size());
+	    customerList = customerList1.getCustomerList();
+	    System.out.println(customerList.size());
 
 	    conn.disconnect();
 	} catch (MalformedURLException e) {
@@ -64,31 +67,31 @@ public class EmployeeFacade extends Facade {
 	} catch (JAXBException e) {
 	    e.printStackTrace();
 	}
-	return employeeList;
+	return customerList;
     }
 
     /**
-     * Fetch the specific employee Id
+     * Fetch the specific Cusomer Id
      * 
-     * @param empId
-     *            : Employee Id
-     * @return: Employee
+     * @param customerId
+     *            : Id
+     * @return: Customer
      * 
      */
-    public Employee retreiveEmployee(String empId) {
-	Employee employee = null;
+    public Customer retreiveCustomer(String customerId) {
+	Customer customer = null;
 	try {
-	    String urlPath = BASE_URL + GET_ALL_EMPLOYEE + "/" + empId;
+	    String urlPath = BASE_URL + GET_ALL_CUSTOMER + "/" + customerId;
 	    HttpURLConnection conn = connectDataService(urlPath, OPERATION_GET);
 
-	    JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
+	    JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
 	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-	    employee = (Employee) (jaxbUnmarshaller.unmarshal(conn.getInputStream()));
+	    customer = (Customer) (jaxbUnmarshaller.unmarshal(conn.getInputStream()));
 
 	    isServiceCallSuccessful(conn);
 
-	    System.out.println("Employee is : " + employee.getDesignation());
+	    System.out.println("Customer is : " + customer.getCustomerId());
 
 	    conn.disconnect();
 
@@ -97,36 +100,37 @@ public class EmployeeFacade extends Facade {
 	} catch (JAXBException e) {
 	    e.printStackTrace();
 	}
-	return employee;
+	return customer;
     }
 
     /**
-     * This method will update the employee data in the file system As per make
-     * is more generic we have passes the complete changed Employee from UI
+     * This method will update the customer data in the file system As per make
+     * is more generic we have passes the complete changed Customer from UI
      * layer to Bussiness Layer so that all the data will be in sync
      * 
-     * @param employee
+     * @param customer
      * @return
      */
-    public String createEmployee(Employee employee) {
-	String empId = "-1";
+    public String createCustomer(Customer customer) {
+	String customerId = "-1";
 
 	JAXBContext jaxbContext;
 	try {
-	    jaxbContext = JAXBContext.newInstance(Employee.class);
+	    jaxbContext = JAXBContext.newInstance(Customer.class);
 	    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 	    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-	    String urlPath = BASE_URL + CREATE_EMPLOYEE;
+	    String urlPath = BASE_URL + CREATE_CUSTOMER;
 
 	    HttpURLConnection conn = connectDataService(urlPath, OPERATION_POST);
 	    conn.setRequestProperty("Content-Type", "application/xml");
 	    conn.setDoOutput(true);
 	    conn.setDoInput(true);
-	    jaxbMarshaller.marshal(employee, conn.getOutputStream());
+	    jaxbMarshaller.marshal(customer, conn.getOutputStream());
 
 	    String response = readResponse(conn);
 	    isServiceCallSuccessful(conn);
+
 	    System.out.println(response.toString());
 
 	    conn.disconnect();
@@ -141,36 +145,37 @@ public class EmployeeFacade extends Facade {
 	} catch (JAXBException e1) {
 	    e1.printStackTrace();
 	}
-	return empId;
+	return customerId;
     }
 
     /**
-     * This method will update the employee data in the file system As per make
-     * is more generic we have passes the complete changed Employee from UI
+     * This method will update the Customer data in the file system As per make
+     * is more generic we have passes the complete changed Customer from UI
      * layer to Bussiness Layer so that all the data will be in sync
      * 
-     * @param employee
+     * @param customer
      * @return
      */
-    public boolean updateEmployee(Employee employee) {
+    public boolean updateCustomer(Customer customer) {
 	boolean isTransactionSuccessFul = true;
 
 	JAXBContext jaxbContext;
 	try {
-	    jaxbContext = JAXBContext.newInstance(Employee.class);
+	    jaxbContext = JAXBContext.newInstance(Customer.class);
 	    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 	    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-	    String urlPath = BASE_URL + UPDATE_EMPLOYEE;
+	    String urlPath = BASE_URL + UPDATE_CUSTOMER;
 
 	    HttpURLConnection conn = connectDataService(urlPath, OPERATION_POST);
 	    conn.setRequestProperty("Content-Type", "application/xml");
 	    conn.setDoOutput(true);
 	    conn.setDoInput(true);
-	    jaxbMarshaller.marshal(employee, conn.getOutputStream());
+	    jaxbMarshaller.marshal(customer, conn.getOutputStream());
 
 	    String response = readResponse(conn);
 	    isServiceCallSuccessful(conn);
+
 	    System.out.println(response.toString());
 
 	    conn.disconnect();
@@ -189,20 +194,20 @@ public class EmployeeFacade extends Facade {
     }
 
     /**
-     * This method deals with delete of the Employee from the System. Clean up
-     * of all the data linked with this employee Id is not implemented. Moreover
+     * This method deals with delete of the Customer from the System. Clean up
+     * of all the data linked with this Customer Id is not implemented. Moreover
      * inspite of hard delete we can move this data to obsolete folder which
      * must have the same structure as current data structure had.
      * 
      * Orchestration of the Delete related views will be implemented from here
      * by invoking respective methods from other facades
      * 
-     * @param empId
+     * @param customerId
      * @return
      */
-    public boolean deleteEmployee(String empId) {
+    public boolean deleteCustomer(String customerId) {
 	boolean isTransactionSuccesfull = true;
-	String urlPath = BASE_URL + DELETE_EMPLOYEE + "/" + empId;
+	String urlPath = BASE_URL + DELETE_CUSTOMER + "/" + customerId;
 	try {
 	    HttpURLConnection conn = connectDataService(urlPath, OPERATION_DELETE);
 
@@ -225,9 +230,43 @@ public class EmployeeFacade extends Facade {
     }
 
     public static void main(String args[]) {
-	EmployeeFacade employeeFacade = new EmployeeFacade();
-	// employeeFacade.deleteEmployee("1005");
-	employeeFacade.updateEmployee(createDummyEmployeeData());
+	CustomerFacade customerFacade = new CustomerFacade();
+	// customerFacade.retrieveCustomers();
+	customerFacade.updateCustomer(createDummyCustomerData());
+
     }
+
+    /**
+     * @return dummy test Data
+     */
+    private static Customer createDummyCustomerData() {
+	Customer customer = new Customer();
+	AddressDetails addressDetails = new AddressDetails();
+	addressDetails.setCity("Delhi");
+	addressDetails.setCountry("India");
+	addressDetails.setPinCode("11001");
+	addressDetails.setPrimaryAddress("HN 2388");
+	addressDetails.setState("Delhi");
+
+	customer.setAddressDetails(addressDetails);
+
+	CommunicationDetails communicationDetails = new CommunicationDetails();
+	communicationDetails.setEmailId("xyz@gmil.com");
+	communicationDetails.setLandlineNo("123445");
+	communicationDetails.setMobileNo("3523464");
+	customer.setCommunicationDetails(communicationDetails);
+
+	customer.setCustomerId("5001");
+
+	PersonalDetails personalDetails = new PersonalDetails();
+	// personalDetails.setDob(GregorianCalendar.getInstance().getTime());
+	personalDetails.setFirstName("Dafasf");
+	personalDetails.setLastName("Adaakha");
+	personalDetails.setMiddleName("");
+	customer.setPersonalDetails(personalDetails);
+
+	return customer;
+
+    }
+
 }
-// https://stackoverflow.com/questions/4205980/java-sending-http-parameters-via-post-method-easily
