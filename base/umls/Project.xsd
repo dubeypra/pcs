@@ -28,4 +28,10 @@
 	</complexType>
 
     <element name="Project" type="tns:Project"></element>
+
+    <complexType name="ProjectList">
+    	<sequence>
+    		<element name="projectList" type="tns:Project" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
 </schema>

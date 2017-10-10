@@ -227,7 +227,7 @@ public class EmployeeFacade extends Facade {
     public static void main(String args[]) {
 	EmployeeFacade employeeFacade = new EmployeeFacade();
 	// employeeFacade.deleteEmployee("1005");
-	employeeFacade.updateEmployee(createDummyEmployeeData());
+	employeeFacade.createEmployee(createDummyEmployeeData());
     }
 }
 // https://stackoverflow.com/questions/4205980/java-sending-http-parameters-via-post-method-easily

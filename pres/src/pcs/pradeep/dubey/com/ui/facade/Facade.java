@@ -14,8 +14,14 @@ import java.net.URL;
 import pcs.pradeep.dubey.com.baseentity.AddressDetails;
 import pcs.pradeep.dubey.com.baseentity.CommunicationDetails;
 import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
+import pcs.pradeep.dubey.com.baseentity.Task;
+import pcs.pradeep.dubey.com.baseentity.TaskStatus;
+import pcs.pradeep.dubey.com.baseentity.WorkFlow;
 import pcs.pradeep.dubey.com.employee.Designation;
 import pcs.pradeep.dubey.com.employee.Employee;
+import pcs.pradeep.dubey.com.project.Project;
+import pcs.pradeep.dubey.com.project.ProjectStatus;
+import pcs.pradeep.dubey.com.project.WorkFlowList;
 
 /**
  * @author prdubey
@@ -106,6 +112,28 @@ public abstract class Facade {
 
 	return employee;
 
+    }
+
+    public static Project createDummyProjectData() {
+	Project project = new Project();
+	project.setId("8001");
+	project.setDescription("Dubey");
+	project.setStatus(ProjectStatus.COMPLETED);
+
+	Task task = new Task();
+	task.setOrderOfExecution(1);
+	task.setTaskId("23");
+	task.setTaskStatus(TaskStatus.PLANNED);
+
+	WorkFlow workFlow = new WorkFlow();
+	workFlow.setDescription("First Work Flow");
+	workFlow.setId("Legal Flow");
+	workFlow.getTaskList().add(task);
+	WorkFlowList workFlowList = new WorkFlowList();
+	workFlowList.getFlowList().add(workFlow);
+	project.setWorkflowList(workFlowList);
+
+	return project;
     }
 
 }

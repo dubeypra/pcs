@@ -64,7 +64,7 @@ public class CustomerDao {
 	private List<Customer> loadCustomerData() throws JAXBException {
 	    List<Customer> customerList = new ArrayList<Customer>();
 	    List<String> customerPathList = Utility
-		    .listFilesForFolder(new File(DataFileFolderLocations.CUSTOMER_RELATIVE_PATH));
+		    .listFilesForFolder(new File(DataFileFolderLocations.getCustomerDataPath()));
 	    JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
 	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
@@ -109,7 +109,7 @@ public class CustomerDao {
 
 		    JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
 		    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		    String fileLocation = DataFileFolderLocations.CUSTOMER_RELATIVE_PATH + customerId
+		    String fileLocation = DataFileFolderLocations.getCustomerDataPath() + customerId
 			    + DataFileFolderLocations.FILE_EXTENSION;
 		    customer = (Customer) (jaxbUnmarshaller.unmarshal(new File(fileLocation)));
 
@@ -141,7 +141,7 @@ public class CustomerDao {
 		File tempFile = (File) intermediateProcessMap.get(INTERMEDIATE_TEMP_FILE_IDENTIFIER);
 		customer.setCustomerId(customerId);
 
-		String fileLocation = DataFileFolderLocations.CUSTOMER_RELATIVE_PATH + customerId
+		String fileLocation = DataFileFolderLocations.getCustomerDataPath() + customerId
 			+ DataFileFolderLocations.FILE_EXTENSION;
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
@@ -180,7 +180,7 @@ public class CustomerDao {
 		customer = (Customer) intermediateProcessMap.get(INTERMEDIATE_CUSTOMER_IDENTIFIER);
 		File tempFile = (File) intermediateProcessMap.get(INTERMEDIATE_TEMP_FILE_IDENTIFIER);
 
-		String fileLocation = DataFileFolderLocations.CUSTOMER_RELATIVE_PATH + customer.getCustomerId()
+		String fileLocation = DataFileFolderLocations.getCustomerDataPath() + customer.getCustomerId()
 			+ DataFileFolderLocations.FILE_EXTENSION;
 
 		File existingFile = new File(fileLocation);
@@ -212,7 +212,7 @@ public class CustomerDao {
 	 * @return
 	 */
 	public boolean deleteCustomer(String custId) {
-	    String fileLocation = DataFileFolderLocations.CUSTOMER_RELATIVE_PATH + custId
+	    String fileLocation = DataFileFolderLocations.getCustomerDataPath() + custId
 		    + DataFileFolderLocations.FILE_EXTENSION;
 	    File file = new File(fileLocation);
 	    return file.delete();
@@ -227,7 +227,7 @@ public class CustomerDao {
 	private HashMap handleCustomerStream(String customerData, String customerId) throws IOException, JAXBException {
 	    HashMap intermediateMap = new HashMap<>();
 	    Customer customer;
-	    String tempFileLocation = DataFileFolderLocations.CUSTOMER_RELATIVE_PATH + customerId
+	    String tempFileLocation = DataFileFolderLocations.getCustomerDataPath() + customerId
 		    + DataFileFolderLocations.FILE_EXTENSION;
 	    Utility.stringToDom(customerData, tempFileLocation);
 

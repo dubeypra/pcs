@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="default" extends="struts-default">
+
+		<action name="EmployeeAction" class="pcs.pradeep.dubey.com.ui.employee.EmployeeAction" method="populateDashBoard">
+			<result name="dashboard">/jsp/employee/EmployeeDashboard.jsp</result>
+			<result name="employeeSideMenu">/jsp/employee/EmployeeSideMenu.jsp</result>
+			<result name="employeeUpdate">/jsp/employee/EmployeeUpdate.jsp</result>
+			<result name="employeeCreate">/jsp/employee/EmployeeCreate.jsp</result>
+			<result name="employeeDelete">/jsp/employee/EmployeeDelete.jsp</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="CustomerAction" class="pcs.pradeep.dubey.com.ui.customer.CustomerAction">
+			<result name="success">/jsp/customer/CustomerDashboard.jsp</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="ProjectAction" class="pcs.pradeep.dubey.com.ui.project.ProjectAction">
+			<result name="success">/jsp/project/ProjectDashboard.jsp</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="DashboardAction" class="pcs.pradeep.dubey.com.ui.dashboard.DashboardAction">
+			<result name="success">/jsp/dashboard/Dashboard.jsp</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+	</package>
+</struts>

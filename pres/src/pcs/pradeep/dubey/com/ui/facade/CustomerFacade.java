@@ -231,8 +231,8 @@ public class CustomerFacade extends Facade {
 
     public static void main(String args[]) {
 	CustomerFacade customerFacade = new CustomerFacade();
-	// customerFacade.retrieveCustomers();
-	customerFacade.updateCustomer(createDummyCustomerData());
+	customerFacade.retrieveCustomers();
+	// customerFacade.updateCustomer(createDummyCustomerData());
 
     }
 

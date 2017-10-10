@@ -71,7 +71,7 @@ public class EmployeeDao {
 	private List<Employee> loadEmployeeData() throws JAXBException {
 	    List<Employee> employeeList = new ArrayList<Employee>();
 	    List<String> employeePathList = Utility
-		    .listFilesForFolder(new File(DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH));
+		    .listFilesForFolder(new File(DataFileFolderLocations.getEmployeeDataPath()));
 	    JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
 	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
@@ -116,7 +116,7 @@ public class EmployeeDao {
 
 		    JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
 		    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		    String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employeeId
+		    String fileLocation = DataFileFolderLocations.getEmployeeDataPath() + employeeId
 			    + DataFileFolderLocations.FILE_EXTENSION;
 		    employee = (Employee) (jaxbUnmarshaller.unmarshal(new File(fileLocation)));
 
@@ -148,7 +148,7 @@ public class EmployeeDao {
 		File tempFile = (File) intermediateProcessMap.get(INTERMEDIATE_TEMP_FILE_IDENTIFIER);
 		employee.setEmpId(employeeId);
 
-		String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employeeId
+		String fileLocation = DataFileFolderLocations.getEmployeeDataPath() + employeeId
 			+ DataFileFolderLocations.FILE_EXTENSION;
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
@@ -187,7 +187,7 @@ public class EmployeeDao {
 		employee = (Employee) intermediateProcessMap.get(INTERMEDIATE_EMPLOYEE_IDENTIFIER);
 		File tempFile = (File) intermediateProcessMap.get(INTERMEDIATE_TEMP_FILE_IDENTIFIER);
 
-		String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employee.getEmpId()
+		String fileLocation = DataFileFolderLocations.getEmployeeDataPath() + employee.getEmpId()
 			+ DataFileFolderLocations.FILE_EXTENSION;
 
 		File existingFile = new File(fileLocation);
@@ -219,7 +219,7 @@ public class EmployeeDao {
 	 * @return
 	 */
 	public boolean deleteEmployee(String empId) {
-	    String fileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + empId
+	    String fileLocation = DataFileFolderLocations.getEmployeeDataPath() + empId
 		    + DataFileFolderLocations.FILE_EXTENSION;
 	    File file = new File(fileLocation);
 	    return file.delete();
@@ -234,7 +234,7 @@ public class EmployeeDao {
 	private HashMap handleEmployeeStream(String employeeData, String employeeId) throws IOException, JAXBException {
 	    HashMap intermediateMap = new HashMap<>();
 	    Employee employee;
-	    String tempFileLocation = DataFileFolderLocations.EMPLOYEE_RELATIVE_PATH + employeeId
+	    String tempFileLocation = DataFileFolderLocations.getEmployeeDataPath() + employeeId
 		    + DataFileFolderLocations.FILE_EXTENSION;
 	    Utility.stringToDom(employeeData, tempFileLocation);
 
