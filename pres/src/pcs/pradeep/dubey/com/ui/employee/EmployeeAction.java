@@ -184,7 +184,7 @@ public class EmployeeAction extends ActionSupport {
 		} catch (Exception ex) {
 			return "failure";
 		}
-		return "dashboard";
+		return "employeeDashboard";
 	}
 
 	public String populateSideMenu() {
@@ -206,7 +206,8 @@ public class EmployeeAction extends ActionSupport {
 	public String createEmployee() {
 		EmployeeFacade facade = new EmployeeFacade();
 		facade.createEmployee(mapEmployeeData());
-		return "dashboard";
+		populateDashBoard(); // Show the Update Employee List after creation
+		return "employeeDashboard";
 	}
 
 	private Employee mapEmployeeData() {

@@ -1,8 +1,8 @@
-package pcs.pradeep.dubey.com.ui.dashboard;
+package pcs.pradeep.dubey.com.ui.help;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class DashboardAction extends ActionSupport{
+public class HelpAction extends ActionSupport{
 
 	private static final long serialVersionUID = 3070324781140521568L;
 	

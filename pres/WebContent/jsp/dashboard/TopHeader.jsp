@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/pres/css/pcs.css">
 </head>
-<body>
+<body >
 	<div>
 		<table>
 			<tr>
-				<th><a href="#" title="Project Mangement"
-					onclick="fn_prepareProjectMenuItem()">Project Management</a></th>
+				<th><a href="projectSideMenu" title="Project Mangement">Project
+						Management</a></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -18,8 +18,8 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th><a href="#" title="Employee Management"
-					onclick="fn_prepareEmployeeMenuItem()">Employee Management</a></th>
+				<th><a href="employeeSideMenu" title="Employee Management">Employee
+						Management</a></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -28,8 +28,8 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th><a href="#" title="Customer Management"
-					onclick="fn_prepareCustomerMenuItem()">Customer Management</a></th>
+				<th><a href="customerSideMenu" title="Customer Management">Customer
+						Management</a></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -38,8 +38,7 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th><a href="#" title="Admin"
-					onclick="fn_prepareAdminMenuItem()">Admin</a></th>
+				<th><a href="adminSideMenu" title="Admin">Admin</a></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -48,7 +47,7 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th><a href="#" title="Help" onclick="fn_prepareHelpMenuItem()">Help</a></th>
+				<th><a href="helpSideMenu" title="Help">Help</a></th>
 			</tr>
 		</table>
 

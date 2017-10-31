@@ -1,48 +1,27 @@
 
-body {
-	margin: 0;
+.topMenuBar {
+	background-color: #efefef ;
+}
+.divWithScrolableTable{
+	width: 325px; 
+	height: 450px; 
+	overflow: auto
+	
 }
 
-/* Create the Menu Bar */
-.menuBar {
-	background-color: GREY;
-	overflow-x: hidden;
-}
-/* Style the side navigation */
-.sidenav {
-	height: 97%;
-	width: 200px;
-	position: fixed;
-	z-index: 1;
-	top: 20;
-	left: 0;
-	background-color: #111;
-	overflow-x: hidden;
+
+.dashBoardBodyDiv{
+	width: 800px; 
+	height: 640px;
+	background-color: #c3d9ff; 
+	overflow: auto
 }
 
-/* Side navigation links */
-.sidenav a {
-	color: white;
-	padding: 16px;
-	text-decoration: none;
-	display: block;
-}
 
-/* Change color on hover */
-.sidenav a:hover {
-	background-color: #ddd;
-	color: black;
-}
-
-/* Style the content */
-.content {
-	margin-left: 200px;
-	padding-left: 20px;
-}
-
-.ivs {
-	display: none;
-}
-.vis {
-	display: block;
+.dashBoardMenuDiv{
+	width: 325px; 
+	height: 450px;
+	height: 640px;
+	background-color: #669eff;  
+	overflow: auto
 }

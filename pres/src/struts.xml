@@ -4,13 +4,29 @@
 
 	<package name="default" extends="struts-default">
 
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+		<action name="*Link" method="{1}" class="com.vaannila.action.LinkAction">
+			<result name="welcome" type="tiles">welcome</result>
+			<result name="friends" type="tiles">friends</result>
+			<result name="office" type="tiles">office</result>
+		</action>
+		
+		<action name="LoginAction" class="pcs.pradeep.dubey.com.ui.dashboard.LoginAction">
+			<result type="redirectAction">DashboardAction</result>
+			<result name="failure">/jsp/dashboard/Cancel.jsp</result>
+		</action>
+		
 		<action name="EmployeeAction" class="pcs.pradeep.dubey.com.ui.employee.EmployeeAction" method="populateDashBoard">
-			<result name="dashboard">/jsp/employee/EmployeeDashboard.jsp</result>
-			<result name="employeeSideMenu">/jsp/employee/EmployeeSideMenu.jsp</result>
-			<result name="employeeUpdate">/jsp/employee/EmployeeUpdate.jsp</result>
-			<result name="employeeCreate">/jsp/employee/EmployeeCreate.jsp</result>
-			<result name="employeeDelete">/jsp/employee/EmployeeDelete.jsp</result>
-			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+			<result name="employeeDashboard" type="tiles">employeeDashboard</result>
+			<result name="employeeCreate"  type="tiles">employeeCreate</result>
+<!-- 			<result name="employeeSideMenu">/jsp/employee/EmployeeSideMenu.jsp</result> -->
+<!-- 			<result name="employeeUpdate">/jsp/employee/EmployeeUpdate.jsp</result> -->
+<!-- 			 -->
+<!-- 			<result name="employeeDelete">/jsp/employee/EmployeeDelete.jsp</result> -->
+<!-- 			<result name="failure">/jsp/dashboard/Failure.jsp</result> -->
 		</action>
 		
 		<action name="CustomerAction" class="pcs.pradeep.dubey.com.ui.customer.CustomerAction">
@@ -24,9 +40,16 @@
 		</action>
 		
 		<action name="DashboardAction" class="pcs.pradeep.dubey.com.ui.dashboard.DashboardAction">
-			<result name="success">/jsp/dashboard/Dashboard.jsp</result>
-			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+			<result name="success" type="redirectAction">EmployeeAction</result> <!--  Which ever action has to made default must be mapped here -->
 		</action>
 		
+		<action name="*SideMenu"  method="{1}" class="pcs.pradeep.dubey.com.ui.dashboard.TopMenuBarAction">
+			<result name="employeeSideMenu" type="redirectAction">EmployeeAction</result>
+			<result name="customerSideMenu" type="tiles">customerSideMenu</result>
+			<result name="adminSideMenu" type="tiles">adminSideMenu</result>
+			<result name="projectSideMenu" type="tiles">projectSideMenu</result>
+			<result name="helpSideMenu" type="tiles">helpSideMenu</result>
+		</action>
 	</package>
+	
 </struts>
