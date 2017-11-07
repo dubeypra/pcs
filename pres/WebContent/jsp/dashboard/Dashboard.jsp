@@ -11,30 +11,21 @@
 <link rel="stylesheet" href="/pres/css/pcs.css">
 </head>
 <body>
-	<table border="1" cellpadding="2" cellspacing="2" align="center">
-		<tr>
-			<td height="5%" colspan="2">
-				<div class="topMenuBar">
-					<tiles:insertAttribute name="header" />
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td height="90%" valign="top">
-				<div class="dashBoardMenuDiv">
-					<tiles:insertAttribute name="menu" />
-				</div>
-			</td>
-			<td width="90%" align="left">
-				<div class="dashBoardBodyDiv">
-					<tiles:insertAttribute name="body" />
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td height="5%" colspan="2" valign="baseline"><tiles:insertAttribute
-					name="footer" /></td>
-		</tr>
-	</table>
+	<div class="header">
+		<tiles:insertAttribute name="header" />
+	</div>
+	<div class="row">
+		<div class="column side">
+			<tiles:insertAttribute name="menu" />
+		</div>
+		<div class="column middle">
+			<tiles:insertAttribute name="body" />
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<tiles:insertAttribute name="footer" />
+	</div>
 </body>
 </html>

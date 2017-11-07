@@ -4,6 +4,7 @@
 package pcs.pradeep.dubey.com.ui.employee;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -15,24 +16,27 @@ import pcs.pradeep.dubey.com.baseentity.PersonalDetails;
 import pcs.pradeep.dubey.com.employee.Designation;
 import pcs.pradeep.dubey.com.employee.Employee;
 import pcs.pradeep.dubey.com.ui.facade.EmployeeFacade;
+import pcs.pradeep.dubey.com.ui.facade.ExternalServiceFacade;
+import pcs.pradeep.dubey.com.utility.AddressUtility;
 import pcs.pradeep.dubey.com.utility.DateTimeUtlity;
 
 /**
  * @author prdubey
  *
  */
-public class EmployeeAction extends ActionSupport {
+public abstract class EmployeeAction extends ActionSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private List<Employee> employeeList;
+
 	private List<String> desginationList;
 
-	public List<String> getDesginationList() {
-		return desginationList;
-	}
-
-	public void setDesginationList(List<String> desginationList) {
-		this.desginationList = desginationList;
-	}
+	private List<String> stateList;
+	private List<String> countryList;
 
 	private String firstName;
 	private String middleName;
@@ -45,7 +49,7 @@ public class EmployeeAction extends ActionSupport {
 	private String pinCode;
 
 	private String country;
-	
+
 	private String mobileNo;
 	private String landlineNo;
 	private String email;
@@ -53,11 +57,38 @@ public class EmployeeAction extends ActionSupport {
 	private Date doj;
 
 	public EmployeeAction() {
-		Designation[] designations = Designation.values();
-		desginationList = new ArrayList();
-		for (Designation designation : designations) {
+		desginationList = new ArrayList<String>();
+		Designation[] desginations = Designation.values();
+		for (Designation designation : desginations) {
 			desginationList.add(designation.name());
 		}
+
+		stateList = Arrays.asList(AddressUtility.getStates("India"));
+		countryList = Arrays.asList(AddressUtility.getCountries());
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Date getDob() {
@@ -148,69 +179,58 @@ public class EmployeeAction extends ActionSupport {
 		this.doj = doj;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public List<String> getDesginationList() {
+		return desginationList;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setDesginationList(List<String> desginationList) {
+		this.desginationList = desginationList;
 	}
 
-	public String getMiddleName() {
-		return middleName;
+	public List<Employee> getEmployeeList() {
+		return employeeList;
 	}
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public List<String> getStateList() {
+		return stateList;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setStateList(List<String> stateList) {
+		this.stateList = stateList;
 	}
 
-	@Override
-	public String execute() {
-		return "success";
+	public List<String> getCountryList() {
+		return countryList;
 	}
 
-	public String populateDashBoard() {
+	public void setCountryList(List<String> countryList) {
+		this.countryList = countryList;
+	}
+
+	/**
+	 * @return : List of All employees
+	 */
+	public List<Employee> getEmployeeDataForDB() {
+		List<Employee> employeeList = null;
 		try {
 			EmployeeFacade facade = new EmployeeFacade();
 			employeeList = facade.retrieveEmployees();
 		} catch (Exception ex) {
-			return "failure";
+
 		}
-		return "employeeDashboard";
+		return employeeList;
 	}
 
-	public String populateSideMenu() {
-		return "employeeSideMenu";
-	}
-
-	public String updateEmployeeForm() {
-		return "employeeUpdate";
-	}
-
-	public String createEmployeeForm() {
-		return "employeeCreate";
-	}
-
-	public String deleteEmployeeForm() {
-		return "employeeDelete";
-	}
-
-	public String createEmployee() {
-		EmployeeFacade facade = new EmployeeFacade();
-		facade.createEmployee(mapEmployeeData());
-		populateDashBoard(); // Show the Update Employee List after creation
-		return "employeeDashboard";
-	}
-
-	private Employee mapEmployeeData() {
+	/**
+	 * Transform Form Input Data in to business entity
+	 * 
+	 * @return Employee
+	 */
+	public Employee mapEmployeeData() {
 		Employee employee = new Employee();
 
 		PersonalDetails personalDetails = new PersonalDetails();
@@ -241,17 +261,34 @@ public class EmployeeAction extends ActionSupport {
 	}
 
 	/**
-	 * @return the employeeList
+	 * Validations Required for Employee Create/Update
 	 */
-	public List<Employee> getEmployeeList() {
-		return this.employeeList;
+	public void additionalValidations() {
+		// Pin Code Validation
+		AddressDetails addressDetails = new AddressDetails();
+		addressDetails.setPinCode(getPinCode());
+		addressDetails.setCountry(getCountry());
+		addressDetails.setState(getState());
+
+		if (!ExternalServiceFacade.getAddressBasedOnPin(addressDetails)) {
+			addFieldError("pinCode", "Pin Code and Provided Address details did not match");
+		}
+
+		// Designation Block
+		if (!getDesginationList().contains(getDesignation())) {
+			addFieldError("designation", "Designation Mandatory for Employee Creation");
+		}
+
+		// Country Block
+		if (!getCountryList().contains(getCountry())) {
+			addFieldError("country", "Please select Country");
+		}
+		// State Block
+
+		if (!getStateList().contains(getState())) {
+			addFieldError("state", "Please select State");
+		}
+
 	}
 
-	/**
-	 * @param employeeList
-	 *            the employeeList to set
-	 */
-	public void setEmployeeList(List<Employee> employeeList) {
-		this.employeeList = employeeList;
-	}
 }

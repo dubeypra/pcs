@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
+<link rel="stylesheet" href="/pres/css/pcs.css">
 </head>
 <body>
 	<s:div>
@@ -14,7 +15,9 @@
 			width="100%" height="100%">
 			<tr>
 				<td colspan="2">
-					<p><h1>Login Page</h1></p>
+					<p>
+					<h1>Login Page</h1>
+					</p>
 				</td>
 			</tr>
 

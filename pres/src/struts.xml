@@ -19,15 +19,41 @@
 			<result name="failure">/jsp/dashboard/Cancel.jsp</result>
 		</action>
 		
-		<action name="EmployeeAction" class="pcs.pradeep.dubey.com.ui.employee.EmployeeAction" method="populateDashBoard">
-			<result name="employeeDashboard" type="tiles">employeeDashboard</result>
+		<action name="EmployeeCreateForm" class ="pcs.pradeep.dubey.com.ui.employee.EmployeeCreateAction" method="createEmployeeForm">
 			<result name="employeeCreate"  type="tiles">employeeCreate</result>
-<!-- 			<result name="employeeSideMenu">/jsp/employee/EmployeeSideMenu.jsp</result> -->
-<!-- 			<result name="employeeUpdate">/jsp/employee/EmployeeUpdate.jsp</result> -->
-<!-- 			 -->
-<!-- 			<result name="employeeDelete">/jsp/employee/EmployeeDelete.jsp</result> -->
-<!-- 			<result name="failure">/jsp/dashboard/Failure.jsp</result> -->
+			<result name="input" type="tiles">employeeCreate</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
 		</action>
+		
+		<action name="EmployeeCreate" class = "pcs.pradeep.dubey.com.ui.employee.EmployeeCreateAction">
+			<result name="employeeDashboard" type="redirectAction">EmployeeDashBoard</result>
+			<result name="input" type="tiles">employeeCreate</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="EmployeeUpdateForm" class ="pcs.pradeep.dubey.com.ui.employee.EmployeeUpdateAction" method="createEmployeeUpdateForm">
+			<result name="employeeUpdate"  type="tiles">employeeUpdate</result>
+			<result name="input" type="tiles">employeeUpdate</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="EmployeeUpdateFormfetchDetails" class ="pcs.pradeep.dubey.com.ui.employee.EmployeeUpdateAction" method="fetchDetails">
+			<result name="fetchDetails"  type="tiles">employeeUpdate</result>
+			<result name="input" type="tiles">employeeUpdate</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="EmployeeUpdate" class = "pcs.pradeep.dubey.com.ui.employee.EmployeeUpdateAction">
+			<result name="employeeDashboard" type="redirectAction">EmployeeDashBoard</result>
+			<result name="input" type="tiles">employeeUpdate</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="EmployeeDashBoard" class="pcs.pradeep.dubey.com.ui.employee.EmployeeDashBoardAction" method="populateDashBoard">
+			<result name="employeeDashboard" type="tiles">employeeDashboard</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
 		
 		<action name="CustomerAction" class="pcs.pradeep.dubey.com.ui.customer.CustomerAction">
 			<result name="success">/jsp/customer/CustomerDashboard.jsp</result>
@@ -40,11 +66,11 @@
 		</action>
 		
 		<action name="DashboardAction" class="pcs.pradeep.dubey.com.ui.dashboard.DashboardAction">
-			<result name="success" type="redirectAction">EmployeeAction</result> <!--  Which ever action has to made default must be mapped here -->
+			<result name="success" type="redirectAction">EmployeeDashBoard</result> <!--  Which ever action has to made default must be mapped here -->
 		</action>
 		
 		<action name="*SideMenu"  method="{1}" class="pcs.pradeep.dubey.com.ui.dashboard.TopMenuBarAction">
-			<result name="employeeSideMenu" type="redirectAction">EmployeeAction</result>
+			<result name="employeeSideMenu" type="redirectAction">EmployeeDashBoard</result>
 			<result name="customerSideMenu" type="tiles">customerSideMenu</result>
 			<result name="adminSideMenu" type="tiles">adminSideMenu</result>
 			<result name="projectSideMenu" type="tiles">projectSideMenu</result>

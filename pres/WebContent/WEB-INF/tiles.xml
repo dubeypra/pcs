@@ -49,6 +49,12 @@
 		<put-attribute name="body" value="/jsp/employee/EmployeeCreate.jsp" />
 	</definition>
 	
+	<definition name="employeeUpdate" extends="dashboard">
+		<put-attribute name="menu" value="/jsp/employee/EmployeeSideMenu.jsp" />
+		<put-attribute name="body" value="/jsp/employee/EmployeeUpdate.jsp" />
+	</definition>
+	
+	
 	<definition name="employeeSideMenu" extends="dashboard">
 		<put-attribute name="menu" value="/jsp/employee/EmployeeSideMenu.jsp" />
 		<put-attribute name="body" value="/jsp/employee/EmployeeDashboard.jsp" />

@@ -10,41 +10,48 @@
 <link rel="stylesheet" href="/pres/css/pcs.css">
 </head>
 <body>
-	<s:div>
-		<s:form>
+	<s:div class="overflowBodyDiv">
+		<s:form action="EmployeeCreate" validate="true">
 			<!-- Personal Details Form -->
-			<s:textfield label="First Name" key="firstName"></s:textfield>
+			<s:textfield label="First Name (*)" key="firstName"></s:textfield>
 			<s:textfield label="Middle Name" key="middleName"></s:textfield>
-			<s:textfield label="Last Name" key="lastName"></s:textfield>
+			<s:textfield label="Last Name (*)" key="lastName"></s:textfield>
 
-			<sx:datetimepicker label="Date of Birth" displayFormat="dd-MMM-yyyy"
-				key="dob" />
+			<sx:datetimepicker label="Date of Birth (*)"
+				displayFormat="dd-MMM-yyyy" key="dob" />
 
 			<!-- Address Details form -->
-			<s:textarea label="Address" key="primaryAddress"></s:textarea>
-			<s:textfield label="City" key="city"></s:textfield>
-			<s:textfield label="Sate" key="state"></s:textfield>
-			<s:textfield label="Pin Code" key="pinCode"></s:textfield>
-			<s:textfield label="Country" key="country"></s:textfield>
+			<s:textarea label="Address (*)" key="primaryAddress"></s:textarea>
+			<s:textfield label="City(*)" key="city"></s:textfield>
+			
+			<s:select label="Country(*)" headerKey="-1"
+				headerValue="Select Country " list="countryList"
+				key="country" />
+			
+			<s:select label="Sate(*)" headerKey="-1"
+				headerValue="Select State " list="stateList"
+				key="state" />
+				
 
+			<s:textfield label="Pin Code(*)" key="pinCode"></s:textfield>
 			<!-- Communication Details  -->
 
-			<s:textfield label="Mobile No" key="mobileNo"></s:textfield>
+			<s:textfield label="Mobile No(*)" key="mobileNo"></s:textfield>
 			<s:textfield label="landline No" key="landlineNo">
 			</s:textfield>
-			<s:textfield label="email" key="email">
+			<s:textfield label="email(*)" key="email">
 			</s:textfield>
 
-			<!-- Specific o employee -->
-			<s:combobox label="Designation" key="designation"
-				list="desginationList">
-			</s:combobox>
-
-			<sx:datetimepicker label="Date of Joining"
+			<s:select label="Designation(*)" headerKey="-1"
+				headerValue="Select Designation " list="desginationList"
+				key="designation" />
+				
+				
+			<sx:datetimepicker label="Date of Joining(*)"
 				displayFormat="dd-MMM-yyyy" key="doj" />
 
 
-			<s:submit action="EmployeeAction!createEmployee"></s:submit>
+			<s:submit></s:submit>
 
 		</s:form>
 	</s:div>
