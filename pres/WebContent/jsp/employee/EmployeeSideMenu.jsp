@@ -3,10 +3,8 @@
 <div class="sideMenuDimension">
 	<a href="<s:url action="EmployeeDashBoard"/>">Retrieve Employees</a><br>
 	<a href="<s:url action="EmployeeCreateForm"/>">Create Employee</a><br>
-	<a href="<s:url action="EmployeeUpdateForm"/>">Update
-		Employee</a><br> <a
-		href="<s:url action="EmployeeAction!deleteEmployeeForm"/>">Delete
-		Employee</a><br>
+	<a href="<s:url action="EmployeeUpdateForm"/>">Update Employee</a><br>
+	<a href="<s:url action="EmployeeDeleteForm"/>">Delete Employee</a><br>
 </div>
 
 

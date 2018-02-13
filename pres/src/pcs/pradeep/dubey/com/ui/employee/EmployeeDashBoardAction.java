@@ -3,6 +3,8 @@
  */
 package pcs.pradeep.dubey.com.ui.employee;
 
+import java.util.Collections;
+
 /**
  * Handle Create Request of the Employee
  * 
@@ -21,6 +23,7 @@ public class EmployeeDashBoardAction extends EmployeeAction {
 
 	public String populateDashBoard() {
 		setEmployeeList(getEmployeeDataForDB());
+		Collections.sort(getEmployeeList(), new EmployeeComparator());
 		return "employeeDashboard";
 	}
 

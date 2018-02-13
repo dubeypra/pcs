@@ -49,6 +49,16 @@
 			<result name="failure">/jsp/dashboard/Failure.jsp</result>
 		</action>
 		
+		<action name="EmployeeDeleteForm" class ="pcs.pradeep.dubey.com.ui.employee.EmployeeDeleteAction" method="createEmployeeDeleteForm">
+			<result name="employeeDelete"  type="tiles">employeeDelete</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
+		<action name="EmployeeDelete" class = "pcs.pradeep.dubey.com.ui.employee.EmployeeDeleteAction">
+			<result name="employeeDashboard" type="redirectAction">EmployeeDashBoard</result>
+			<result name="failure">/jsp/dashboard/Failure.jsp</result>
+		</action>
+		
 		<action name="EmployeeDashBoard" class="pcs.pradeep.dubey.com.ui.employee.EmployeeDashBoardAction" method="populateDashBoard">
 			<result name="employeeDashboard" type="tiles">employeeDashboard</result>
 			<result name="failure">/jsp/dashboard/Failure.jsp</result>

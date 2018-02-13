@@ -24,42 +24,44 @@
 		</s:if>
 		
 		<s:if test="%{employee!=null}">
-			<s:form action="EmployeeUpdate" validate="true">
+			<s:form action="EmployeeUpdate" validate="true" method="post">
 				<!-- Personal Details Form -->
-				<s:textfield label="First Name (*)" key="firstName" name="employee.personalDetails.firstName"></s:textfield>
-				<s:textfield label="Middle Name" key="middleName" name ="employee.personalDetails.middleName"></s:textfield>
-				<s:textfield label="Last Name (*)" key="lastName" name="employee.personalDetails.lastName"></s:textfield>
+				<s:textfield label="Employee Id" key="empIdToUpdated"  disabled="true"></s:textfield>
+				<s:textfield label="First Name (*)" key="firstName" ></s:textfield>
+				<s:textfield label="Middle Name" key="middleName" ></s:textfield>
+				<s:textfield label="Last Name (*)" key="lastName"></s:textfield>
 
 				<sx:datetimepicker label="Date of Birth (*)"
-					displayFormat="dd-MMM-yyyy" key="dob" name="employee.personalDetails.dob"/>
+					displayFormat="dd-MMM-yyyy" key="dob"/>
 
 				<!-- Address Details form -->
-				<s:textarea label="Address (*)" key="primaryAddress" name="employee.addressDetails.primaryAddress"></s:textarea>
-				<s:textfield label="City(*)" key="city" name="employee.addressDetails.city"></s:textfield>
+				<s:textarea label="Address (*)" key="primaryAddress"></s:textarea>
+				<s:textfield label="City(*)" key="city"></s:textfield>
 
 				<s:select label="Country(*)" headerKey="-1"
-					headerValue="Select Country " list="countryList" key="country" name="employee.addressDetails.country"/>
+					headerValue="Select Country " list="countryList" key="country" />
 
 				<s:select label="Sate(*)" headerKey="-1" headerValue="Select State "
-					list="stateList" key="state" name="employee.addressDetails.country.state"/>
+					list="stateList" key="state" />
 
 
-				<s:textfield label="Pin Code(*)" key="pinCode" name="employee.addressDetails.country.pinCode"></s:textfield>
+				<s:textfield label="Pin Code(*)" key="pinCode"></s:textfield>
 				<!-- Communication Details  -->
 
-				<s:textfield label="Mobile No(*)" key="mobileNo" name="employee.communicationDetails.mobileNo"></s:textfield>
-				<s:textfield label="landline No" key="landlineNo" name="employee.communicationDetails.landlineNo">
+				<s:textfield label="Mobile No(*)" key="mobileNo"></s:textfield>
+				<s:textfield label="landline No" key="landlineNo" >
 				</s:textfield>
-				<s:textfield label="email(*)" key="email" name="employee.communicationDetails.emailId">
+				<s:textfield label="email(*)" key="email" >
 				</s:textfield>
 
 				<s:select label="Designation(*)" headerKey="-1"
 					headerValue="Select Designation " list="desginationList"
-					key="designation" name="employee.designation"/>
+					key="designation" />
 
 				<sx:datetimepicker label="Date of Joining(*)"
-					displayFormat="dd-MMM-yyyy" key="doj" name="employee.dateOfJoining"/>
+					displayFormat="dd-MMM-yyyy" key="doj" />
 
+				
 				<s:submit label="Update" id="update"></s:submit>
 			</s:form>
 		</s:if>
