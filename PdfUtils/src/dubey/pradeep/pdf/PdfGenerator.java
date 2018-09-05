@@ -379,6 +379,9 @@ public class PdfGenerator {
 	addRadioButtonGroup(optionsList, FormDataBean.TEST_RADIO_BUTTON, OFFSET_X, OFFSET_Y + verticalGap * 3, 10, 10,
 		page1, contentStream);
 
+	addTextArea(FormDataBean.ADDITIONAL_DETAILS_KEY, OFFSET_X, OFFSET_Y - OFFSET_VERTICAL_BETWEEN_LABLE_FEILD
+		- verticalGap * 8, 400, 20, 1000, defaultFontSize, page1);
+
 	// addFooterInPage();
     }
 
@@ -458,6 +461,35 @@ public class PdfGenerator {
 	PDTextField textBox = new PDTextField(acroForm);
 	textBox.setPartialName(name);
 	textBox.setAlternateFieldName(name);
+
+	String defaultAppearanceString1 = defaultAppearanceString.replace("12", String.valueOf(fontSize));
+	textBox.setDefaultAppearance(defaultAppearanceString1);
+	textBox.setMaxLen(maxLength);
+
+	addFieldToPage(x, y, width, height, textBox, page);
+
+	// set the field value
+	// textBox.setValue(name);
+    }
+
+    /**
+     * Add Text Field
+     * 
+     * @param name
+     *            : Name of the Field through which Identification can be done
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @throws IOException
+     */
+    private void addTextArea(String name, float x, float y, float width, float height, int maxLength, float fontSize,
+	    PDPage page) throws IOException {
+	PDTextField textBox = new PDTextField(acroForm);
+	textBox.setPartialName(name);
+	textBox.setAlternateFieldName(name);
+	textBox.setMultiline(true);
+	textBox.setDoNotScroll(false);
 
 	String defaultAppearanceString1 = defaultAppearanceString.replace("12", String.valueOf(fontSize));
 	textBox.setDefaultAppearance(defaultAppearanceString1);
